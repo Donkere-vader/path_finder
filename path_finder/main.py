@@ -106,24 +106,6 @@ class PathFinder(arcade.Window):
                     self.box_height,
                     color
                 )
-        
-        for node in self.nodes:
-            try:
-                arcade.draw_text(
-                    text=f"({node.x}, {node.y})", 
-                    start_x=(node.x) * self.box_width + self.box_width / 2,
-                    start_y=SCREEN_HEIGHT - (node.y * self.box_height + self.box_height / 2),
-                    color=(250, 0, 250)
-                )
-            except:
-                import sys
-                print(sys.exc_info())
-            arcade.draw_circle_filled(
-                (node.x) * self.box_width + self.box_width / 2,
-                SCREEN_HEIGHT - (node.y * self.box_height + self.box_height / 2),
-                4,
-                (200, 200, 200)
-            )
 
 
 def main(maze_name):
