@@ -39,6 +39,89 @@ class PathFinder(arcade.Window):
             print('ERROR: Provide an start and end point in the maze') # TODO propper error's
             exit()
 
+        #self.get_nodes(self.start[0], self.start[1])
+
+    
+    #def get_nodes(self, x: int, y: int):
+        
+        self.checked_squares = []
+        self.check_square(self.start[0], self.start[1])
+
+        """        _text_maze = []
+
+        for line in self.maze:
+            _line = []
+            for tile in line:
+                _c = " "
+                if tile == self.maze_tiles.start:
+                    _c = "S"
+                elif tile == self.maze_tiles.end:
+                    _c = "E"
+                elif tile == self.maze_tiles.wall:
+                    _c = "#"
+                _line.append(_c)
+            _text_maze.append(
+                _line
+            )
+        
+        for line in _text_maze:
+            print()
+            for c in line:
+                print(c, end="")
+        
+        for node in self.nodes:
+            print(node.x, node.y)
+            _text_maze[node.y][node.x] = "N"
+        
+
+        for line in _text_maze:
+            print()
+            for c in line:
+                print(c, end="")
+
+        print()"""
+
+    def check_square(self, x, y):
+        self.checked_squares.append((x, y))
+        if self.maze[y][x] != self.maze_tiles.air and self.maze[y][x] != self.maze_tiles.start:
+            return False
+
+        # check surrounding squares
+        surrounding_air = []
+
+        for _x, _y in zip([0, 0, -1, 1], [-1, 1, 0, 0]):
+            if not (y + _y >= 0 or y + _y <= len(self.maze)) or not(x + _x >=0 or x + _x <= len(self.maze[y])):
+                continue
+
+            print(_x, _y)
+            if self.maze[y + _y][x + _x] == self.maze_tiles.air:
+                surrounding_air.append((x + _x, y + _y))
+
+            if (x + _x, y + _y) not in self.checked_squares:
+                self.check_square(x + _x, y + _y)
+    
+        add = True
+        print(f"({x}, {y}) SURROUNDING AIR: {surrounding_air}")
+        if len(surrounding_air) == 2 and (surrounding_air[0][0] == surrounding_air[1][0] or surrounding_air[0][1] == surrounding_air[1][1]):
+            add = False
+
+        if add:
+            if len(self.nodes) == 0:
+                neighbour = None
+            else:
+                neighbour = self.nodes[-1]
+            self.nodes.append(
+                Node(
+                    x + _x - 1,
+                    y + _y,
+                    neighbour
+                )
+            )
+    
+
+        # return true because je suis air
+        return True
+
     def on_draw(self):
         arcade.start_render()
 
@@ -61,6 +144,24 @@ class PathFinder(arcade.Window):
                     self.box_height,
                     color
                 )
+        
+        for node in self.nodes:
+            try:
+                arcade.draw_text(
+                    text=f"({node.x}, {node.y})", 
+                    start_x=(node.x) * self.box_width + self.box_width / 2,
+                    start_y=SCREEN_HEIGHT - (node.y * self.box_height + self.box_height / 2),
+                    color=(250, 0, 250)
+                )
+            except:
+                import sys
+                print(sys.exc_info())
+            arcade.draw_circle_filled(
+                (node.x) * self.box_width + self.box_width / 2,
+                SCREEN_HEIGHT - (node.y * self.box_height + self.box_height / 2),
+                4,
+                (200, 200, 200)
+            )
 
 
 def main(maze_name):
