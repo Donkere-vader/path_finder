@@ -4,6 +4,8 @@ At least... I hope it is simple or this will cost a lot of time.
 
 It uses the dijkstra algorithm for finding the shortest path
 
+Coding was powered by Blockcat's brownies
+
 ## Maze
 Creating a maze. Create a maze using the following characters:
  - \# represents a wall
