@@ -38,48 +38,10 @@ class PathFinder(arcade.Window):
         if not self.start or not self.end:
             print('ERROR: Provide an start and end point in the maze') # TODO propper error's
             exit()
-
-        #self.get_nodes(self.start[0], self.start[1])
-
-    
-    #def get_nodes(self, x: int, y: int):
         
         self.checked_squares = []
         self.check_square(self.start[0], self.start[1])
 
-        """        _text_maze = []
-
-        for line in self.maze:
-            _line = []
-            for tile in line:
-                _c = " "
-                if tile == self.maze_tiles.start:
-                    _c = "S"
-                elif tile == self.maze_tiles.end:
-                    _c = "E"
-                elif tile == self.maze_tiles.wall:
-                    _c = "#"
-                _line.append(_c)
-            _text_maze.append(
-                _line
-            )
-        
-        for line in _text_maze:
-            print()
-            for c in line:
-                print(c, end="")
-        
-        for node in self.nodes:
-            print(node.x, node.y)
-            _text_maze[node.y][node.x] = "N"
-        
-
-        for line in _text_maze:
-            print()
-            for c in line:
-                print(c, end="")
-
-        print()"""
 
     def check_square(self, x, y):
         self.checked_squares.append((x, y))
