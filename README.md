@@ -2,7 +2,7 @@
 A simple path finder script.
 At least... I hope it is simple or this will cost a lot of time.
 
-It uses some kind of alogrith, I just don't know what it is called.
+It uses the dijkstra algorithm for finding the shortest path
 
 ## Maze
 Creating a maze. Create a maze using the following characters:
