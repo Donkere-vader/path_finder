@@ -18,6 +18,8 @@ class MazeHandler:
         _maze = []
 
         for line in _maze_file:
+            if not line:
+                continue
             _maze_line = []
 
             for c in line:
