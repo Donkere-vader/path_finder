@@ -175,13 +175,19 @@ class PathFinder(arcade.Window):
                     color
                 )
         
-        for n in self.path:
-            arcade.draw_circle_filled(
-                n.x * self.box_width + self.box_width / 2,
-                SCREEN_HEIGHT - (n.y * self.box_height + self.box_height /2),
-                5,
-                (255, 0, 0)
-            )
+        for i in range(len(self.path)):
+            n = self.path[i]
+            if i + 1 >= len(self.path):
+                for y in range(len(self.maze)):
+                    for x in range(len(self.maze[y])):
+                        if self.maze[y][x] == self.maze_tiles.start:
+                            next_x = x
+                            next_y = y
+                            break
+            else:
+                next_x = self.path[i + 1].x
+                next_y = self.path[i + 1].y
+            arcade.draw_line(n.x * self.box_width + self.box_width / 2, SCREEN_HEIGHT - (n.y * self.box_height + self.box_height / 2), next_x * self.box_width + self.box_width / 2, SCREEN_HEIGHT - (next_y * self.box_height + self.box_height / 2), (255, 0, 0), 1)
 
 
 def main(maze_name):
