@@ -18,7 +18,6 @@ class MazeHandler:
         _maze = []
 
         for line in _maze_file:
-            print(line)
             _maze_line = []
 
             for c in line:
