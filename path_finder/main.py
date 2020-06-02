@@ -83,6 +83,7 @@ class PathFinder(arcade.Window):
         _start_node.distance = 0
         print("\n\n=== CHECKING NODES ===")
         self.check_node(_start_node)
+        self.append_path(self.end_point)
 
 
     def check_node(self, node):
@@ -96,6 +97,9 @@ class PathFinder(arcade.Window):
                     neighbour.via = node
 
                 if self.maze[neighbour.y][neighbour.x] == self.maze_tiles.end:
+                    self.end_point = neighbour
+
+                """if self.maze[neighbour.y][neighbour.x] == self.maze_tiles.end:
                     self.append_path(neighbour)
                     print(" < == PATH FOUND == >")
                     _text_path = []
@@ -106,9 +110,9 @@ class PathFinder(arcade.Window):
                         else:
                             print(f"{n} ({n.x}, {n.y}) Distance: {n.distance} | Via: ({n.via})")
 
+"""
 
-
-                elif neighbour not in self.checked_nodes:
+                if neighbour not in self.checked_nodes:
                     self.check_node(neighbour)
         except:
             import sys
